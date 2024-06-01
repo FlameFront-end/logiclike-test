@@ -1,14 +1,15 @@
 .card {
   width: 393px;
-  border-radius: 18px;
-  box-shadow: 0 10px 13px -4px rgba(35, 35, 95, 0.19);
   background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 13px -4px rgb(35 35 95 / 19%);
 
   .imageWrapper {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     border-radius: 18px 18px 0 0;
+
     img {
       width: 144px;
       height: 144px;
@@ -16,11 +17,10 @@
   }
 
   .name {
-    padding: 12px 18px 18px 18px;
-
+    padding: 12px 18px 18px;
+    color: #39414b;
     font-weight: 800;
     font-size: 18px;
     line-height: 100%;
-    color: #39414b;
   }
 }

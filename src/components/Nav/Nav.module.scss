@@ -3,25 +3,24 @@
   top: 20px;
 
   .list {
+    width: 264px;
+    padding: 12px;
     border: 1px solid #cfcfe4;
     border-radius: 18px;
-    padding: 12px;
-    width: 264px;
 
     li {
-      border-radius: 12px;
       padding: 12px;
+      color: #39414b;
       font-weight: 800;
       font-size: 18px;
       line-height: 100%;
-      color: #39414b;
+      border-radius: 12px;
       cursor: pointer;
-
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
       &.active {
-        background: #5fbf77;
         color: #fff;
+        background: #5fbf77;
       }
     }
   }
