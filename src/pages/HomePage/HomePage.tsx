@@ -1,12 +1,34 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
-import MainLayout from '../../layouts/MainLayout/MainLayout .tsx'
+import CourseCard from '../../components/CourseCard/CourseCard.tsx'
+
+import { Nav } from '../../components'
+import { CoursesService } from '../../services/courses.service.ts'
+
+import s from './HomePage.module.scss'
 
 const HomePage: FC = () => {
+	const [courses, setCourses] = useState<Course[]>([])
+	const [active, setActive] = useState<number>(0)
+
+	useEffect(() => {
+		CoursesService.getCourses().then(r => setCourses(r.data))
+	}, [])
+
 	return (
-		<MainLayout>
-			<div>HomePage</div>
-		</MainLayout>
+		<div className={s.wrapper}>
+			<Nav courses={courses} active={active} setActive={setActive} />
+			<div className={s.list}>
+				{courses.map(item => (
+					<CourseCard
+						key={item.id}
+						bgColor={item.bgColor}
+						name={item.name}
+						image={item.image}
+					/>
+				))}
+			</div>
+		</div>
 	)
 }
 
