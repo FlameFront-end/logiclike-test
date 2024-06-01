@@ -4,11 +4,11 @@ import s from './Nav.module.scss'
 
 type NavProps = {
 	courses: Course[]
-	active: number
-	setActive: (value: number) => void
+	activeTag: string
+	setActiveTag: (value: string) => void
 }
 
-const Nav: FC<NavProps> = ({ courses, active, setActive }) => {
+const Nav: FC<NavProps> = ({ courses, activeTag, setActiveTag }) => {
 	const uniqueTagsArray = Array.from(
 		new Set(courses.flatMap(course => course.tags))
 	)
@@ -19,9 +19,9 @@ const Nav: FC<NavProps> = ({ courses, active, setActive }) => {
 				{uniqueTagsArray.map((item, index) => (
 					<li
 						key={index}
-						className={active === index ? s.active : ''}
+						className={activeTag === item ? s.active : ''}
 						onClick={() => {
-							setActive(index)
+							setActiveTag(item)
 						}}
 					>
 						{item}

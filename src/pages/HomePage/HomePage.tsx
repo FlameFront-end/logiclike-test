@@ -8,18 +8,30 @@ import { CoursesService } from '../../services/courses.service.ts'
 import s from './HomePage.module.scss'
 
 const HomePage: FC = () => {
-	const [courses, setCourses] = useState<Course[]>([])
-	const [active, setActive] = useState<number>(0)
+	const [allCourses, setAllCourses] = useState<Course[]>([])
+	const [activeTag, setActiveTag] = useState<string>('Головоломки')
+	const [filterCourses, setFilterCourses] = useState<Course[]>([])
 
 	useEffect(() => {
-		CoursesService.getCourses().then(r => setCourses(r.data))
+		CoursesService.getCourses().then(r => setAllCourses(r.data))
 	}, [])
+
+	useEffect(() => {
+		const filteredArray = allCourses.filter(course =>
+			course.tags.includes(activeTag)
+		)
+		setFilterCourses(filteredArray)
+	}, [activeTag])
 
 	return (
 		<div className={s.wrapper}>
-			<Nav courses={courses} active={active} setActive={setActive} />
+			<Nav
+				courses={allCourses}
+				activeTag={activeTag}
+				setActiveTag={setActiveTag}
+			/>
 			<div className={s.list}>
-				{courses.map(item => (
+				{filterCourses.map(item => (
 					<CourseCard
 						key={item.id}
 						bgColor={item.bgColor}
